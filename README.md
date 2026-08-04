@@ -1,6 +1,7 @@
 # HTML to Xiumi (秀米)
 
 把一个本地 HTML 文件自动发布成秀米(秀米)编辑草稿,并可保留设计稿的行内样式。附带 Claude Code skill(`.claude/skills/html-to-xiumi/`)。
+无法忍受秀米编辑器和微信公众平台带给你的痛苦推送创作体验？来试试这个skill，先vibe-code一个网页，然后直接通过这个skill变成推送！
 
 ## 功能
 
