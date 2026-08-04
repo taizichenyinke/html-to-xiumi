@@ -1,8 +1,6 @@
 # HTML to Xiumi (秀米)
 
-把一个本地 HTML 文件自动发布成秀米(秀米)编辑草稿,并可保留设计稿的行内样式。
-
-从清华物理系学生会「万有预报」项目的秀米发布功能提取而来,独立成仓,附带 Claude Code skill(`.claude/skills/html-to-xiumi/`)。
+把一个本地 HTML 文件自动发布成秀米(秀米)编辑草稿,并可保留设计稿的行内样式。附带 Claude Code skill(`.claude/skills/html-to-xiumi/`)。
 
 ## 功能
 
