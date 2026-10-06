@@ -4,3 +4,6 @@ output/
 .env
 .venv/
 .DS_Store
+.agents/skills/xiumi/settings.json
+.codex/
+venv/

@@ -1,0 +1,4 @@
+interface:
+  display_name: "秀米 HTML 入稿"
+  short_description: "通过内部模型写入可编辑秀米草稿，并核对保存重开后的正文和样式"
+  default_prompt: "使用 $xiumi 将这份 HTML 导入秀米，并验证保存重开后的正文和样式。"

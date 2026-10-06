@@ -1,7 +1,23 @@
 # HTML to Xiumi (秀米)
 
-把一个本地 HTML 文件自动发布成秀米(秀米)编辑草稿,并可保留设计稿的行内样式。附带 Claude Code skill(`.claude/skills/html-to-xiumi/`)。
+把一个本地 HTML 文件自动发布成秀米(秀米)编辑草稿,并可保留设计稿的行内样式。附带 Claude Code skill(`.claude/skills/html-to-xiumi/`)和 Codex skill(`.agents/skills/xiumi/`)。
 无法忍受秀米编辑器和微信公众平台带给你的痛苦推送创作体验？来试试这个skill，先vibe-code一个网页，然后直接通过这个skill变成推送！
+
+本 fork 基于 [hanselhan23/html-to-xiumi](https://github.com/hanselhan23/html-to-xiumi)，新增 Codex 可调用的命令与技能，复用原有 Angular 内部模型写入。原 Claude 入口和命令保留。Codex 入口只读取指定 HTML，并在保存后新标签重开核对正文、组件、样式和图片；登录自动检测，不需要终端按回车。使用说明见 [Codex 接入](docs/codex.md)，实测范围见 [验证记录](docs/codex-verification.md)。
+
+## Codex 快速开始
+
+需要 Python 3.11+。在仓库目录运行：
+
+```powershell
+python -m pip install -r requirements.txt
+python scripts/codex_xiumi.py prepare examples/codex-sample.html --report output/codex/prepare.json
+python scripts/codex_xiumi.py publish examples/codex-sample.html --title "Codex 测试稿" --browser edge --profile output/codex/profile --report output/codex/publish.json
+```
+
+首次在专用浏览器窗口登录秀米，程序自动继续。`status=verified` 才表示本轮保存重开检查通过。这不是任意网页无损转换：需要顶层 section 与行内样式；复杂布局、真实微信手机预览仍需人工检查。秀米改字可能规范化段落 CSS。
+
+在 Codex 中打开此仓库，可使用 `$xiumi 将 examples/codex-sample.html 导入秀米并验证保存结果`。安装到个人技能目录用 `python scripts/install_codex_skill.py`，详见 [安装与参数](docs/codex.md)。
 
 ## 功能
 
@@ -73,6 +89,9 @@ python scripts/publish_xiumi_draft.py path/to/your.html --title "推送标题" -
 ```
 .
 ├── .claude/skills/html-to-xiumi/SKILL.md   # Claude Code skill 定义
+├── .agents/skills/xiumi/SKILL.md           # Codex skill 定义
+├── scripts/codex_xiumi.py                  # Codex 模型写入与保存重开核验
+├── scripts/install_codex_skill.py          # 安装个人 Codex skill
 ├── scripts/publish_xiumi_draft.py          # 发布脚本(核心)
 ├── generators/                             # 发布脚本依赖的 HTML/Markdown 生成
 ├── wanyou/                                 # 发布脚本依赖的浏览器与图片工具
